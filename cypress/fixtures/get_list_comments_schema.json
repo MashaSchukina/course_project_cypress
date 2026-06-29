@@ -1,0 +1,107 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "required": ["comments"],
+  
+    "properties": {
+    "comments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "comment",
+          "comment_text",
+          "user",
+          
+          "assignee",
+          "reactions",
+          "date",
+          "reply_count"
+        ],
+        
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[0-9]+$"
+          },
+          "comment": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["text"],
+              "additionalProperties": false,
+              "properties": {
+                "text": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "comment_text": {
+            "type": "string"
+          },
+          "resolved": {
+            "type": ["boolean", "null"]
+          },
+          "reactions": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "date": {
+            "type": "string",
+            "pattern": "^[0-9]{13}$"
+          },
+          "reply_count": {
+          "type": ["string", "integer"]},
+  
+  
+
+          "user": {
+            "type": "object",
+            "required": ["id", "username", "email", "color", "profilePicture"],
+            
+            "properties": {
+              "id": { "type": "integer", "minimum": 1 },
+              "username": { "type": "string" },
+              "initials": { "type": "string"},
+              "email": { "type": "string", "pattern": "^[^@]+@[^@]+\\.[^@]+$" },
+              "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+              "profilePicture": { "type": ["string", "null"] }
+            }
+          },
+          "assignee": {
+            "type": ["object", "null"],
+            "required": ["id", "username", "email", "color", "profilePicture"],
+            
+            "properties": {
+              "id": { "type": "integer", "minimum": 1 },
+              "username": { "type": "string" },
+              "initials": { "type": "string" },
+              "email": { "type": "string", "pattern": "^[^@]+@[^@]+\\.[^@]+$" },
+              "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+              "profilePicture": { "type": ["string", "null"] }
+            }
+          },
+          "assigned_by": {
+            "type": ["object", "null"],
+            "required": ["id", "username", "initials", "email", "color", "profilePicture"],
+            
+            "properties": {
+              "id": { "type": "integer", "minimum": 1 },
+              "username": { "type": "string" },
+              "initials": { "type": "string"},
+              "email": { "type": "string", "pattern": "^[^@]+@[^@]+\\.[^@]+$" },
+              "color": { "type": "string", "pattern": "^#[0-9a-fA-F]{6}$" },
+              "profilePicture": { "type": ["string", "null"] }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
