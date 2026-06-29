@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  node-job:
+  e2e-tests:
     docker:
       - image: cypress/base:24.17.0
 
