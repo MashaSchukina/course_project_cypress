@@ -9,12 +9,6 @@ jobs:
       - checkout
 
       - run:
-          name: Install dependencies
-          command: |
-            apt-get update
-            apt-get install -y unzip default-jdk
-
-      - run:
           name: Install npm packages
           command: npm ci
 
@@ -22,18 +16,19 @@ jobs:
           name: Run tests
           command: npm run test
 
-      - run:
-          name: Generate Allure report
-          command: npm run allure:report
+      - store_artifacts:
+          path: cypress/reports
+          destination: cypress-mochawesome-reports
 
       - store_artifacts:
-          path: allure-report
-          destination: CypressReport
+          path: cypress/screenshots
+          destination: cypress-screenshots
 
-      - store_test_results:
-          path: allure-results
+      - store_artifacts:
+          path: cypress/videos
+          destination: cypress-videos
 
 workflows:
-  build-and-test:
+  test-pipeline:
     jobs:
-      - node-job
+      - e2e-tests
