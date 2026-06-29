@@ -45,12 +45,15 @@ export function GetListComments(listId) {
 
 export function UpdateComment(commentId) {
     const commentText = faker.lorem.sentence();
-    cy.wrap(commentText).as('AliasUpdatedCommentText');
+    const assigneeId = Cypress.env('assigneeID');
 
-    return cy.send_Request('PUT', `comment/${commentId}`, {
+    const requestPayload = {
         comment_text: commentText,
+        assignee: assigneeId,
         resolved: true,
-    });
+    };
+    cy.wrap(requestPayload).as('CommentRequestPayload');
+    return cy.send_Request('PUT', `comment/${commentId}`, requestPayload);
 }
 
 export function DeleteComment(commentId) {

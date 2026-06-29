@@ -13,8 +13,8 @@ module.exports = defineConfig({
     env: {
       token: process.env.CLICKUP_TOKEN,
       folderID: process.env.CLICKUP_FOLDER_ID,
-      assigneeID: process.env.CLICKUP_ASSIGNEE_ID,
-      invalidToken: process.env.CLICKUP_INVALID_TOKEN
+      invalidToken: process.env.CLICKUP_INVALID_TOKEN,
+      assigneeID: process.env.CLICKUP_ASSIGNEE_USER_ID
     }
 
   },
